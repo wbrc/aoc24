@@ -40,6 +40,14 @@ func (f Fields) IntAt(i int) int {
 	return Must(strconv.Atoi(f[i]))
 }
 
+func (f Fields) Ints() []int {
+	res := make([]int, len(f))
+	for i, s := range f {
+		res[i] = Must(strconv.Atoi(s))
+	}
+	return res
+}
+
 func Lines(r io.Reader) iter.Seq[Line] {
 	s := bufio.NewScanner(r)
 	return func(yield func(Line) bool) {
