@@ -12,7 +12,13 @@ import (
 
 var day = "day01"
 
-var Example = []byte(``)
+var Example = []byte(`3   4
+4   3
+2   5
+1   3
+3   9
+3   3
+`)
 
 func main() {
 	part := flag.Int("p", 0, "part 1 or 2 (0 for both)")
