@@ -58,3 +58,16 @@ func Lines(r io.Reader) iter.Seq[Line] {
 		}
 	}
 }
+
+func Lines2(r io.Reader) iter.Seq2[int, Line] {
+	s := bufio.NewScanner(r)
+	return func(yield func(int, Line) bool) {
+		i := 0
+		for s.Scan() {
+			if !yield(i, Line(s.Text())) {
+				break
+			}
+			i++
+		}
+	}
+}

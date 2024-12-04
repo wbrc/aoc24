@@ -12,7 +12,17 @@ import (
 
 var day = "day04"
 
-var Example = []byte(``)
+var Example = []byte(`MMMSXXMASM
+MSAMXMSMSA
+AMXSXMAAMM
+MSAMASMSMX
+XMASAMXAMM
+XXAMMXXAMA
+SMSMSASXSS
+SAXAMASAAA
+MAMMMXMMMM
+MXMXAXMASX
+`)
 
 func main() {
 	part := flag.Int("p", 0, "part 1 or 2 (0 for both)")
