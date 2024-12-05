@@ -18,8 +18,11 @@ func Must[A any](a A, err error) A {
 
 type Line string
 
-func (l Line) Scanf(format string, a ...interface{}) (int, error) {
-	return fmt.Sscanf(string(l), format, a...)
+func (l Line) Scanf(format string, a ...interface{}) {
+	n := Must(fmt.Sscanf(string(l), format, a...))
+	if n != len(a) {
+		panic("invalid format")
+	}
 }
 
 func (l Line) Fields() Fields {
@@ -70,4 +73,23 @@ func Lines2(r io.Reader) iter.Seq2[int, Line] {
 			i++
 		}
 	}
+}
+
+type Set[A comparable] map[A]struct{}
+
+func NewSet[A comparable]() Set[A] {
+	return make(map[A]struct{})
+}
+
+func (s Set[A]) Set(a A) {
+	s[a] = struct{}{}
+}
+
+func (s Set[A]) Has(a A) bool {
+	_, ok := s[a]
+	return ok
+}
+
+func (s Set[A]) Delete(a A) {
+	delete(s, a)
 }
