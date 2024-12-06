@@ -93,3 +93,7 @@ func (s Set[A]) Has(a A) bool {
 func (s Set[A]) Delete(a A) {
 	delete(s, a)
 }
+
+func (s Set[A]) Len() int {
+	return len(s)
+}
