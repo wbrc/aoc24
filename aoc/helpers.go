@@ -51,6 +51,10 @@ func (f Fields) Ints() []int {
 	return res
 }
 
+func (f Fields) Join(sep string) Line {
+	return Line(strings.Join(f, sep))
+}
+
 func Lines(r io.Reader) iter.Seq[Line] {
 	s := bufio.NewScanner(r)
 	return func(yield func(Line) bool) {
